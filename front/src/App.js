@@ -7,9 +7,9 @@ function App() {
   const [message, setMessage] = useState('');
   const [xp, setXp] = useState(0);
 
-  // Cihazın mobil olup olmadığını kontrol eden fonksiyon
-  const isMobileDevice = () => {
-    return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+  // Cihazın Android olup olmadığını kontrol eden fonksiyon
+  const isAndroidDevice = () => {
+    return /android/i.test(navigator.userAgent);
   };
 
   // Tıklama işlemi
@@ -47,10 +47,12 @@ function App() {
 
   // Kullanıcıyı cüzdan extension'ına veya mobil uygulamaya yönlendirme
   const redirectToWallet = () => {
-    if (isMobileDevice()) {
-      // Mobil cihazsa, Concordium mobil uygulamasına yönlendir
-      window.location.href = 'https://apps.apple.com/us/app/concordium-wallet/id1568889674'; // iOS için
-      // Android yönlendirmesi: https://play.google.com/store/apps/details?id=com.concordium.wallet
+    if (isAndroidDevice()) {
+      // Android cihazsa, Concordium mobil uygulamasına yönlendir
+      window.location.href = 'https://play.google.com/store/apps/details?id=software.concordium.mobilewallet.seedphrase.mainnet';
+    } else if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+      // iOS cihazsa, Concordium iOS uygulamasına yönlendir
+      window.location.href = 'https://apps.apple.com/us/app/concordium-wallet/id1568889674';
     } else {
       // Masaüstü cihazlardaysa, Concordium tarayıcı uzantısını aç
       const extensionUrl = 'https://chrome.google.com/webstore/detail/concordium-wallet/mnnkpffndmickbiakofclnpoiajlegmg';
@@ -73,7 +75,7 @@ function App() {
       setMessage(data.message);
       setXp(data.xp); // XP'yi güncelle
     } else {
-      setMessage('Cüzdan doğrulaması başarısız.');
+      setMessage('Wallet verification failed.');
     }
   };
 
@@ -101,39 +103,38 @@ function App() {
         onClick={handleClick}
         disabled={isClicked}
       >
-        {isClicked ? 'Geri Sayım Başladı' : 'Tıkla'}
+        {isClicked ? 'Countdown Started' : 'Click Here'}
       </button>
       
       {isClicked && (
         <div className="timer">
-          Geri sayım: {formatTime(timeLeft)}
+          Countdown: {formatTime(timeLeft)}
         </div>
       )}
 
       {/* Cüzdan Açma Bölümü */}
       <div className="concordium-wallet">
-        <h2>Concordium Cüzdan Aç (Mobil/Web)</h2>
-        <button onClick={redirectToWallet}>Cüzdan Aç</button>
+        <h2>Open Concordium Wallet (Mobile/Web)</h2>
+        <button onClick={redirectToWallet}>Open Wallet</button>
         <p>{message}</p>
-        {xp > 0 && <p>Toplam XP: {xp}</p>}
+        {xp > 0 && <p>Total XP: {xp}</p>}
       </div>
 
       {/* Concordium Bilgi Bölümü */}
       <div className="concordium-info">
-        <h2>Concordium'u Takip Et</h2>
-        <p>Daha fazla bilgi almak ve Concordium ile ilgili güncellemeleri takip etmek için:</p>
+        <h2>Follow Concordium</h2>
+        <p>For more information and updates on Concordium, follow:</p>
         <ul>
           <li>
             <a href="https://www.concordium.com" target="_blank" rel="noopener noreferrer">
-              Concordium Resmi Web Sitesi
+              Official Concordium Website
             </a>
           </li>
           <li>
             <a href="https://www.twitter.com/concordium" target="_blank" rel="noopener noreferrer">
-              Concordium Twitter Hesabı
+              Concordium Twitter Account
             </a>
           </li>
-         
         </ul>
       </div>
     </div>
