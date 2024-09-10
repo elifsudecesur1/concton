@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build --prefix frontend"  # Frontend için build komutunu belirtin
+  command = "npm run build --prefix front"  # Frontend için build komutunu belirtin
   publish = "front/build"                   # Yayınlanacak dizin, build klasörü
 
 [[redirects]]
