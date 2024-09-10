@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 
 function App() {
@@ -53,7 +53,7 @@ function App() {
       // Android yönlendirmesi: https://play.google.com/store/apps/details?id=com.concordium.wallet
     } else {
       // Masaüstü cihazlardaysa, Concordium tarayıcı uzantısını aç
-      const extensionUrl = 'chrome-extension://mnnkpffndmickbiakofclnpoiajlegmg/popup.html';
+      const extensionUrl = 'https://chrome.google.com/webstore/detail/concordium-wallet/mnnkpffndmickbiakofclnpoiajlegmg';
       window.open(extensionUrl, '_blank'); // Tarayıcı uzantısını yeni bir sekmede aç
     }
   };
@@ -78,13 +78,13 @@ function App() {
   };
 
   // Cüzdan adresi geri döndüğünde işlemi otomatik başlat
-  const handleWalletAddressReturn = () => {
+  const handleWalletAddressReturn = useCallback(() => {
     const query = new URLSearchParams(window.location.search);
     const walletAddressFromUrl = query.get('address'); // URL'den cüzdan adresini al
     if (walletAddressFromUrl) {
       handleWalletVerification(walletAddressFromUrl); // Otomatik doğrulama ve backend'e gönderme
     }
-  };
+  }, []);
 
   useEffect(() => {
     // Sayfa yüklendiğinde cüzdan adresini kontrol et
@@ -93,7 +93,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Concordium Mini App Cüzdan Açma</h1>
+      {/* Welcome yazısı yukarıdan aşağıya kayarak inecek */}
+      <h1 className="welcome">Welcome</h1>
+
       <button
         className={`concordium-btn ${isClicked ? 'disabled' : ''}`}
         onClick={handleClick}
@@ -101,6 +103,7 @@ function App() {
       >
         {isClicked ? 'Geri Sayım Başladı' : 'Tıkla'}
       </button>
+      
       {isClicked && (
         <div className="timer">
           Geri sayım: {formatTime(timeLeft)}
@@ -130,11 +133,7 @@ function App() {
               Concordium Twitter Hesabı
             </a>
           </li>
-          <li>
-            <a href="https://wallet.concordium.com" target="_blank" rel="noopener noreferrer">
-              Concordium Cüzdanı Aç (Web Cüzdan)
-            </a>
-          </li>
+         
         </ul>
       </div>
     </div>

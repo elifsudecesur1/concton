@@ -1,9 +1,13 @@
 [build]
-  publish = "frontend/build"  # Frontend build dizini
-  command = "npm run build --prefix frontend"  # Frontend'in build edilmesi için gereken komut
+command = "npm run build"
+publish = "build"
+
+[dev]
+command = "npm start"
+port = 3000
 
 [[redirects]]
-  from = "/api/*"   # Frontend'deki /api ile başlayan istekler
-  to = "http://localhost:5000/api/:splat"  # Yerel backend'e yönlendirilecek (yerel testler için)
-  status = 200
-  force = true
+from = "/api/*"
+to = "http://localhost:5000/api/:splat"
+status = 200
+force = true

@@ -1,16 +1,50 @@
+/* App.css */
+
+/* Genel sayfa stili */
 .App {
   text-align: center;
   margin-top: 50px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d1f2d 0%, #00a1e0 100%);
+  color: white;
 }
 
+/* Welcome yazısı için animasyon */
+.welcome {
+  font-size: 4rem;
+  margin-bottom: 50px;
+  opacity: 0;
+  animation: slideDown 1.5s ease forwards;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Welcome yazısının yukarıdan aşağıya kayma animasyonu */
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Concordium butonu */
 .concordium-btn {
-  width: 100px;
-  height: 100px;
-  background-color: #0d1f2d; /* Concordium ana rengi */
+  width: 150px;
+  height: 150px;
+  background-color: #0d1f2d;
   border: none;
   border-radius: 50%;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
@@ -18,31 +52,34 @@
 
 .concordium-btn:hover {
   transform: scale(1.2); /* Hover animasyonu */
-  background-color: #00a1e0; /* Concordium açık rengi */
+  background-color: #00a1e0;
 }
 
 .concordium-btn.disabled {
-  background-color: #6c757d; /* Devre dışı buton rengi */
+  background-color: #6c757d;
   cursor: not-allowed;
 }
 
+/* Timer stili */
 .timer {
   margin-top: 20px;
-  font-size: 18px;
-  color: #00a1e0; /* Concordium açık rengi */
+  font-size: 24px;
+  color: #ffffff;
 }
 
+/* Concordium bilgi kutusu */
 .concordium-info {
   margin-top: 40px;
+  color: #ffffff;
 }
 
 .concordium-info h2 {
-  color: #0d1f2d;
+  color: #ffffff;
   font-size: 22px;
 }
 
 .concordium-info p {
-  color: #6c757d;
+  color: #f0f0f0;
   font-size: 16px;
 }
 
@@ -63,5 +100,5 @@
 }
 
 .concordium-info ul li a:hover {
-  color: #0d1f2d;
+  color: #ffffff;
 }
