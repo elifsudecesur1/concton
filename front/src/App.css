@@ -1,0 +1,67 @@
+.App {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.concordium-btn {
+  width: 100px;
+  height: 100px;
+  background-color: #0d1f2d; /* Concordium ana rengi */
+  border: none;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.concordium-btn:hover {
+  transform: scale(1.2); /* Hover animasyonu */
+  background-color: #00a1e0; /* Concordium açık rengi */
+}
+
+.concordium-btn.disabled {
+  background-color: #6c757d; /* Devre dışı buton rengi */
+  cursor: not-allowed;
+}
+
+.timer {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #00a1e0; /* Concordium açık rengi */
+}
+
+.concordium-info {
+  margin-top: 40px;
+}
+
+.concordium-info h2 {
+  color: #0d1f2d;
+  font-size: 22px;
+}
+
+.concordium-info p {
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.concordium-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.concordium-info ul li {
+  margin: 10px 0;
+}
+
+.concordium-info ul li a {
+  text-decoration: none;
+  color: #00a1e0;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.concordium-info ul li a:hover {
+  color: #0d1f2d;
+}

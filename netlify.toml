@@ -1,0 +1,9 @@
+[build]
+  publish = "frontend/build"  # Frontend'in build dizinini belirtiyoruz (React için)
+  command = "npm run build"   # Netlify'nın frontend'i build etmesi için komut
+
+[[redirects]]
+  from = "/api/*"   # Frontend'deki /api ile başlayan istekler
+  to = "http://localhost:5000/api/:splat"  # Yerel backend'e yönlendirilecek (yerel test için)
+  status = 200
+  force = true
